@@ -1,0 +1,8 @@
+koval.cats:
+  path:  '/koval/cats'
+  defaults:
+    _controller: '\Drupal\koval\Controller\CatsController::build'
+    _title: 'Cats'
+  requirements:
+    _permission: 'access content'
+
