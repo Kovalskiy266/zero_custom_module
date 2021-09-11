@@ -1,0 +1,6 @@
+global:
+  version: VERSION
+  css:
+    component:
+      css/style.css: {}
+

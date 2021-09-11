@@ -1,0 +1,19 @@
+@import "mixin";
+@import "colors";
+.region-content {
+  @include container;
+  text-align: center;
+  padding: 100px 25px;
+}
+
+.welcome-text {
+  color: $tomato;
+  font-size: 32px;
+  font-weight: 800;
+  span {
+    -webkit-box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+    -moz-box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+    box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+  }
+}
+

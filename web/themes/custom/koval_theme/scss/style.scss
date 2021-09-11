@@ -1,0 +1,37 @@
+@import "koval-cats";
+@import "mixin";
+
+header {
+  height: 200px;
+  width: 100%;
+  background-color: #ffebbe;
+  p {
+    margin-top: 0;
+  }
+  img {
+    height: 200px;
+    width: 200px;
+  }
+  #block-catslogo {
+    font-size: 48px;
+    color: $orange_red;
+    margin-left: auto;
+    font-weight: 700;
+    .field {
+      line-height: 200px;
+      text-align: center;
+
+    }
+  }
+  #block-cats-logo {
+    height: 200px;
+  }
+}
+.region-header {
+  @include container;
+  display: flex;
+  max-height: 200px;
+  height: 200px;
+}
+
+

@@ -6,3 +6,10 @@ koval.cats:
   requirements:
     _permission: 'access content'
 
+#koval.form:
+#  path: '/koval/cats'
+#  defaults:
+#    _title: 'Cats form'
+#    _form: '\Drupal\koval\Form\FormCats'
+#  requirements:
+#    _permission: 'access content'

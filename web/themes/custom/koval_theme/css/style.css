@@ -1,0 +1,57 @@
+.region-content {
+  max-width: 1200px;
+  padding: 0 25px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: center;
+  padding: 100px 25px;
+}
+
+.welcome-text {
+  color: #FF6347;
+  font-size: 32px;
+  font-weight: 800;
+}
+.welcome-text span {
+  -webkit-box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+  -moz-box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+  box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+}
+
+header {
+  height: 200px;
+  width: 100%;
+  background-color: #ffebbe;
+}
+header p {
+  margin-top: 0;
+}
+header img {
+  height: 200px;
+  width: 200px;
+}
+header #block-catslogo {
+  font-size: 48px;
+  color: #FF4500;
+  margin-left: auto;
+  font-weight: 700;
+}
+header #block-catslogo .field {
+  line-height: 200px;
+  text-align: center;
+}
+header #block-cats-logo {
+  height: 200px;
+}
+
+.region-header {
+  max-width: 1200px;
+  padding: 0 25px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  max-height: 200px;
+  height: 200px;
+}
