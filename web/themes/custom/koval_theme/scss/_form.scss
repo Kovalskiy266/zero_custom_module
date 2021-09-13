@@ -1,0 +1,44 @@
+@import "colors";
+.koval-formcats {
+  input {
+    border: 1px solid grey;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    &:focus {
+      border: 1px solid transparent;
+      box-shadow: 0 0 10px #eeab09;
+      outline-color: #ffffff;
+    }
+  }
+  .form-text {
+    padding: 15px;
+    max-width: 400px;
+  }
+  label {
+    font-size: 22px;
+    font-weight: 700;
+    color: $dark_orange;
+    margin-right: 10px;
+  }
+  input[type="submit"] {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px $tomato inset, 0 0 0 0 $tomato;
+    border: $tomato;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+    transition: .15s ease-in-out;
+    text-transform: uppercase;
+    &:hover{
+      box-shadow: 0 0 10px 0 $tomato inset, 0 0 10px 4px $tomato;
+      color: $tomato;
+    }
+  }
+}
+

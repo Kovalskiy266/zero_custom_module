@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "gulp": "^4.0.2"
+  },
+  "name": "local",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kovalskiy266/zero_custom_module.git"
+  },
+  "author": "[",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kovalskiy266/zero_custom_module/issues"
+  },
+  "homepage": "https://github.com/Kovalskiy266/zero_custom_module#readme",
+  "description": ""
+}

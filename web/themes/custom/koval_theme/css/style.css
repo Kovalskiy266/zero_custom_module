@@ -12,11 +12,48 @@
   color: #FF6347;
   font-size: 32px;
   font-weight: 800;
+  margin: 40px 0;
 }
-.welcome-text span {
-  -webkit-box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
-  -moz-box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
-  box-shadow: -11px 2px 35px 48px rgba(255, 99, 71, 0.2) inset;
+
+.koval-formcats input {
+  border: 1px solid grey;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.koval-formcats input:focus {
+  border: 1px solid transparent;
+  box-shadow: 0 0 10px #eeab09;
+  outline-color: #ffffff;
+}
+.koval-formcats .form-text {
+  padding: 15px;
+  max-width: 400px;
+}
+.koval-formcats label {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FF8C00;
+  margin-right: 10px;
+}
+.koval-formcats input[type=submit] {
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 40px #FF6347 inset, 0 0 0 0 #FF6347;
+  border: #FF6347;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+  transition: 0.15s ease-in-out;
+  text-transform: uppercase;
+}
+.koval-formcats input[type=submit]:hover {
+  box-shadow: 0 0 10px 0 #FF6347 inset, 0 0 10px 4px #FF6347;
+  color: #FF6347;
 }
 
 header {
