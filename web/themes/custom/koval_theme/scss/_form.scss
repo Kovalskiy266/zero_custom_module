@@ -1,4 +1,6 @@
 @import "colors";
+@import "mixin";
+
 .koval-formcats {
   input {
     border: 1px solid grey;
@@ -42,3 +44,10 @@
   }
 }
 
+.valid_message {
+  @include result_message($lime, $white);
+}
+
+.invalid_message {
+  @include result_message($red_light, $white);
+}

@@ -56,6 +56,30 @@
   color: #FF6347;
 }
 
+.valid_message {
+  border: 1px solid #3ADF00;
+  padding: 7px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: #3ADF00;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.invalid_message {
+  border: 1px solid #F39999;
+  padding: 7px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: #F39999;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 10px;
+}
+
 header {
   height: 200px;
   width: 100%;

@@ -5,3 +5,15 @@
   margin: 0 auto;
   overflow: hidden;
 }
+
+@mixin result_message($color, $text_color) {
+  border: 1px solid $color;
+  padding: 7px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: $color;
+  font-size: 18px;
+  font-weight: 800;
+  color: $text_color;
+  margin-top: 10px;
+}
