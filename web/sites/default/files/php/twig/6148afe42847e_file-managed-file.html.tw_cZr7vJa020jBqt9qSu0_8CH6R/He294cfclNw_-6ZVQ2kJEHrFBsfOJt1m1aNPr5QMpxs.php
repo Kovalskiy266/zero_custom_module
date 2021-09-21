@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* modules/custom/koval/templates/koval-page.html.twig */
-class __TwigTemplate_ebd0482d6cad3d7e55ac60f70d10887421b8a5b003869a0daf8eaaf8d752117d extends \Twig\Template
+/* core/themes/classy/templates/content-edit/file-managed-file.html.twig */
+class __TwigTemplate_d8922169e7926facc6701db9e60bffaef4c33a0ad2f585701394113ca37ee511 extends \Twig\Template
 {
     private $source;
     private $macros = [];
@@ -35,21 +35,27 @@ class __TwigTemplate_ebd0482d6cad3d7e55ac60f70d10887421b8a5b003869a0daf8eaaf8d75
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<div class=\"welcome-text\"><span>";
-        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["text"] ?? null), 1, $this->source), "html", null, true);
-        echo "</span></div>
-";
-        // line 2
-        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["form"] ?? null), 2, $this->source), "html", null, true);
+        // line 13
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->extensions['Drupal\Core\Template\TwigExtension']->attachLibrary("classy/file"), "html", null, true);
         echo "
-
+";
+        // line 15
+        $context["classes"] = [0 => "js-form-managed-file", 1 => "form-managed-file"];
+        // line 20
+        echo "<div";
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, ($context["attributes"] ?? null), "addClass", [0 => ($context["classes"] ?? null)], "method", false, false, true, 20), 20, $this->source), "html", null, true);
+        echo ">
+  ";
+        // line 21
+        echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(($context["element"] ?? null), 21, $this->source), "html", null, true);
+        echo "
+</div>
 ";
     }
 
     public function getTemplateName()
     {
-        return "modules/custom/koval/templates/koval-page.html.twig";
+        return "core/themes/classy/templates/content-edit/file-managed-file.html.twig";
     }
 
     public function isTraitable()
@@ -59,25 +65,25 @@ class __TwigTemplate_ebd0482d6cad3d7e55ac60f70d10887421b8a5b003869a0daf8eaaf8d75
 
     public function getDebugInfo()
     {
-        return array (  44 => 2,  39 => 1,);
+        return array (  50 => 21,  45 => 20,  43 => 15,  39 => 13,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "modules/custom/koval/templates/koval-page.html.twig", "/var/www/web/modules/custom/koval/templates/koval-page.html.twig");
+        return new Source("", "core/themes/classy/templates/content-edit/file-managed-file.html.twig", "/var/www/web/core/themes/classy/templates/content-edit/file-managed-file.html.twig");
     }
     
     public function checkSecurity()
     {
-        static $tags = array();
-        static $filters = array("escape" => 1);
-        static $functions = array();
+        static $tags = array("set" => 15);
+        static $filters = array("escape" => 13);
+        static $functions = array("attach_library" => 13);
 
         try {
             $this->sandbox->checkSecurity(
-                [],
+                ['set'],
                 ['escape'],
-                []
+                ['attach_library']
             );
         } catch (SecurityError $e) {
             $e->setSourceContext($this->source);

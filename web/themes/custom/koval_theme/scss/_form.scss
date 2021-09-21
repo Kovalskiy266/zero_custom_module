@@ -1,8 +1,13 @@
 @import "colors";
 @import "mixin";
 
+
+form {
+  margin: 0 auto;
+  text-align: center;
+}
 .koval-formcats {
-  input {
+  #edit-name {
     border: 1px solid grey;
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -14,15 +19,18 @@
       outline-color: #ffffff;
     }
   }
-  .form-text {
+  .form-text, .form-email {
     padding: 15px;
     max-width: 400px;
+    margin: 10px auto;
+    display: block;
   }
   label {
     font-size: 22px;
     font-weight: 700;
     color: $dark_orange;
-    margin-right: 10px;
+    margin-bottom: 50px;
+
   }
   input[type="submit"] {
     text-decoration: none;
@@ -44,10 +52,16 @@
   }
 }
 
-.valid_message {
-  @include result_message($lime, $white);
+.invalid-email-message, .invalid-name-message {
+  @include result_message($red_light, $white);
 }
 
-.invalid_message {
-  @include result_message($red_light, $white);
+.send-message {
+  @include result_message($lime, $white);
+}
+.form-wrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
 }

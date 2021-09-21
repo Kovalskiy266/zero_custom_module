@@ -15,27 +15,34 @@
   margin: 40px 0;
 }
 
-.koval-formcats input {
+form {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.koval-formcats #edit-name {
   border: 1px solid grey;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
-.koval-formcats input:focus {
+.koval-formcats #edit-name:focus {
   border: 1px solid transparent;
   box-shadow: 0 0 10px #eeab09;
   outline-color: #ffffff;
 }
-.koval-formcats .form-text {
+.koval-formcats .form-text, .koval-formcats .form-email {
   padding: 15px;
   max-width: 400px;
+  margin: 10px auto;
+  display: block;
 }
 .koval-formcats label {
   font-size: 22px;
   font-weight: 700;
   color: #FF8C00;
-  margin-right: 10px;
+  margin-bottom: 50px;
 }
 .koval-formcats input[type=submit] {
   text-decoration: none;
@@ -56,7 +63,19 @@
   color: #FF6347;
 }
 
-.valid_message {
+.invalid-email-message, .invalid-name-message {
+  border: 1px solid #F39999;
+  padding: 7px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: #F39999;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.send-message {
   border: 1px solid #3ADF00;
   padding: 7px;
   width: 50%;
@@ -68,16 +87,11 @@
   margin-top: 10px;
 }
 
-.invalid_message {
-  border: 1px solid #F39999;
-  padding: 7px;
-  width: 50%;
+.form-wrapper {
+  max-width: 900px;
+  width: 100%;
   margin: 0 auto;
-  background-color: #F39999;
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
-  margin-top: 10px;
+  display: block;
 }
 
 header {
