@@ -57,6 +57,19 @@ class FormCats extends FormBase
       '#suffix' => '<div class="email-validation-message"></div>'
     ];
 
+    $form['cat_image'] = [
+      '#type' => "managed_file",
+      '#title' => t('Cat image'),
+      '#description' => t('Select file with extension jpg, jpeg, png or gif'),
+      "#required" => TRUE,
+      '#upload_validators' => array(
+        'file_validate_is_image' => array(),
+        'file_validate_extensions' => array('png gif jpg jpeg'),
+        'file_validate_size' => [2097152],
+      )
+    ];
+
+
     $form['submit'] = [
       '#type' => 'submit',
       '#name' => 'submit',
@@ -91,7 +104,8 @@ class FormCats extends FormBase
    */
 
   public function submitForm(array &$form, FormStateInterface $form_state)
-  {}
+  {
+  }
 
   /**
    * Ajax submitting.
