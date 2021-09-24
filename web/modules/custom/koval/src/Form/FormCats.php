@@ -32,10 +32,10 @@ class FormCats extends FormBase
       '#type' => 'textfield',
       '#title' => $this->t("Your cat's name: "),
       '#placeholder' => $this->t("Enter the cat's name"),
-      '#attributes' => array(
-        'title' => t("Minimum length of the name is 2 characters, and the maximum is 32"),
+      '#attributes' => [
+        'title' => $this->t("Minimum length of the name is 2 characters, and the maximum is 32"),
         'class' => ['custom-class'],
-      ),
+      ],
     ];
 
     $form['email'] = [
@@ -43,30 +43,30 @@ class FormCats extends FormBase
       '#title' => $this->t("Your email"),
       "#placeholder" => $this->t('Enter your email'),
       "#required" => TRUE,
-      '#attributes' => array(
-        'title' => t("The name can only contain latin letters, an underscore, or a hyphen"),
+      '#attributes' => [
+        'title' => $this->t("The name can only contain latin letters, an underscore, or a hyphen"),
         'class' => ['custom-class'],
-      ),
+      ],
       '#ajax' => [
         "callback" => "::validateEmail",
         'event' => 'keyup',
-        'progress' => array(
+        'progress' => [
           'type' => 'none',
-        ),
+        ],
       ],
       '#suffix' => '<div class="email-validation-message"></div>'
     ];
 
     $form['cat_image'] = [
-      '#type' => "managed_file",
-      '#title' => t('Cat image'),
-      '#description' => t('Select file with extension jpg, jpeg, png or gif'),
+      '#type' => "file",
+      '#title' => $this->t('Cat image'),
+      '#description' => $this->t('Select file with extension jpg, jpeg, png or gif'),
       "#required" => TRUE,
-      '#upload_validators' => array(
-        'file_validate_is_image' => array(),
-        'file_validate_extensions' => array('png gif jpg jpeg'),
+      '#upload_location' => 'public://images/',
+      '#upload_validators' => [
+        'file_validate_extensions' => ['png gif jpg jpeg'],
         'file_validate_size' => [2097152],
-      )
+      ],
     ];
 
 
@@ -76,9 +76,9 @@ class FormCats extends FormBase
       '#value' => $this->t("Add cat"),
       '#ajax' => [
         'callback' => '::setMessage',
-        'progress' => array(
+        'progress' => [
           'type' => 'none',
-        ),
+        ],
       ],
     ];
 
@@ -98,14 +98,13 @@ class FormCats extends FormBase
   public function validateForm(array &$form, FormStateInterface $form_state)
   {}
 
-
   /**
    * {@inheritDoc}
    */
 
   public function submitForm(array &$form, FormStateInterface $form_state)
-  {
-  }
+  {}
+
 
   /**
    * Ajax submitting.
@@ -146,17 +145,24 @@ class FormCats extends FormBase
         )
       );
     }
-     else {
-      $response->addCommand(
-        new HtmlCommand(
-          '#result_message',
-          '<div class="cat-message send-message">' .
-          $this->t('Thanks! Your cat by name @result has been sent',
-            ['@result' => ($form_state->getValue('name'))])
-        )
-      );
+    elseif (!file_save_upload('cat_image')){
+    $response->addCommand(
+      new HtmlCommand(
+        '#result_message',
+        '<div class="cat-message invalid-email-message">' . $this->t('The picture is not loaded!')
+      )
+    );
     }
-
+     else {
+       $response->addCommand(
+         new HtmlCommand(
+           '#result_message',
+           '<div class="cat-message send-message">' .
+           $this->t('Thanks! Your cat by name @result has been sent',
+             ['@result' => ($form_state->getValue('name'))])
+         )
+       );
+     }
     \Drupal::messenger()->deleteAll();
     $response->addCommand(new InvokeCommand('.custom-class', 'val', ['']));
     return $response;
@@ -175,13 +181,13 @@ class FormCats extends FormBase
         $ajax_response->addCommand(
           new HtmlCommand(
             '.email-validation-message',
-            '<div class = "invalid-email-message">' . t('The characters you entered are invalid in the email, enter the correct email!') . '</div>'
+            '<div class = "invalid-email-message">' . $this->t('The characters you entered are invalid in the email, enter the correct email!') . '</div>'
           )
         );
         $ajax_response->addCommand(
           new CssCommand(
             '.form-email', ['box-shadow' => '2px -2px 59px -9px rgba(217, 26, 8, 0.2) inset',
-                            'border-color' => 'red'],
+                                  'border-color' => 'red'],
           )
         );
         break;

@@ -1,0 +1,51 @@
+<?php
+
+/*
+* Realization hook_schema()
+*/
+
+function koval_schema():array {
+  $schema['koval'] = [
+    'description' => 'Database table for cats',
+    'fields' => [
+      'id' => [
+        'description' => 'Key',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'cat_name' => [
+        'description' => 'Name of cat',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => 'Email of user',
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'cat_image' => [
+        'description' => 'Image of cat',
+        'type' => 'int',
+        'length' => 30,
+        'not null' => FALSE,
+      ],
+      'date_created' => [
+        'description' => 'Data when the record was created',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+
+  return $schema;
+}
