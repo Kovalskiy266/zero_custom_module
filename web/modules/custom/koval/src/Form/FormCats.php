@@ -6,7 +6,9 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Ajax\CssCommand;
-//use function GuzzleHttp\Psr7\str;
+use Drupal\file\Entity\File;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Ajax\InsertCommand;
 
 /**
  * Form for submitting cats.
@@ -58,7 +60,7 @@ class FormCats extends FormBase
     ];
 
     $form['cat_image'] = [
-      '#type' => "file",
+      '#type' => "managed_file",
       '#title' => $this->t('Cat image'),
       '#description' => $this->t('Select file with extension jpg, jpeg, png or gif'),
       "#required" => TRUE,
@@ -103,15 +105,29 @@ class FormCats extends FormBase
    */
 
   public function submitForm(array &$form, FormStateInterface $form_state)
-  {}
+  {
+    \Drupal::messenger()->addStatus(t('Succes'));
+    $cat_image = $form_state->getValue('cat_image');
+    $file = File::load($cat_image[0]);
+    $file->setPermanent();
+    $file->save();
+    \Drupal::database()
+      ->insert('koval')
+      ->fields([
+      'cat_name' => $form_state->getValue('name'),
+      'email' => $form_state->getValue('email'),
+      'date_created' => time(),
+      'cat_image' => $form_state->getValue(['cat_image'])[0],
+      ])
+      ->execute();
+  }
 
 
   /**
    * Ajax submitting.
    */
 
-  public function setMessage(array &$form, FormStateInterface $form_state): object
-  {
+  public function setMessage(array &$form, FormStateInterface $form_state): object {
     $name_pattern ='/[aA-zZ]/';
     $response = new AjaxResponse();
     $cat_name = $form_state->getValue('name');
@@ -145,7 +161,7 @@ class FormCats extends FormBase
         )
       );
     }
-    elseif (!file_save_upload('cat_image')){
+    elseif (!($form_state->getValue('cat_image'))){
     $response->addCommand(
       new HtmlCommand(
         '#result_message',
@@ -162,9 +178,11 @@ class FormCats extends FormBase
              ['@result' => ($form_state->getValue('name'))])
          )
        );
+       $response->addCommand(new RedirectCommand('\koval\cats'));
      }
     \Drupal::messenger()->deleteAll();
     $response->addCommand(new InvokeCommand('.custom-class', 'val', ['']));
+
     return $response;
   }
 
@@ -172,8 +190,7 @@ class FormCats extends FormBase
    * Ajax validate Email.
    */
 
-  public function validateEmail(array &$form, FormStateInterface $form_state)
-  {
+  public function validateEmail(array &$form, FormStateInterface $form_state) {
     $ajax_response = new AjaxResponse();
     $email = $form_state->getValue('email');
     for ($j = 0; $j < strlen($email); $j++) {

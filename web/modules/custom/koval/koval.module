@@ -14,9 +14,9 @@ function koval_theme($existing, $type, $theme, $path) : array
       'variables' => [
         'text' => NULL,
         'form' => NULL,
+        'cats' => NULL,
       ],
       ],
-
   ];
 };
 

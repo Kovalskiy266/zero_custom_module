@@ -3,4 +3,10 @@ global:
   css:
     component:
       css/style.css: {}
+  js:
+    js/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
 
