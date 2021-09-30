@@ -1,10 +1,14 @@
 <?php
 
-/*
-* Realization hook_schema()
-*/
+/**
+ * @file
+ * Realization hook_schema()
+ */
 
-function koval_schema():array {
+/**
+ * Implements hook_schema().
+ */
+function koval_schema() {
   $schema['koval'] = [
     'description' => 'Database table for cats',
     'fields' => [

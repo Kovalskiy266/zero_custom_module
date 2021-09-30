@@ -1,3 +1,26 @@
 <div class="welcome-text"><span>{{ text }}</span></div>
 <div class="form-wrapper">{{ form }}</div>
-<div class="cats-table-wrapper">{{ cats }}</div>
+{#<div class="cats-table-wrapper">{{ cats }}</div>#}
+<div class = "cats-table-wrapper">
+  <h1>Your Cats:</h1>
+  <div class = "header_table">
+    <div class = "header_image"> {{ header_table['cat_image'] }} </div>
+    <div class = "header_name">  {{ header_table['cat_name'] }}</div>
+    <div class = "header_email"> {{ header_table['email'] }} </div>
+    <div class = "header_date">  {{ header_table['date_created'] }} </div>
+  </div>
+    {% for cat in cats %}
+    <div class="cats-fields-container">
+      <div class="cat_image_container">{{ cat['cat_image'] }}</div>
+      <div class="cat_name"> {{ cat['cat_name'] }}</div>
+      <div class="email"> {{ cat['email'] }}</div>
+      <div class="date_created">{{ cat['date_created'] }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div id="overlay">
+  <span id="overlay_close" class="close">x</span>
+</div>
+<div id="window_site"></div>
+

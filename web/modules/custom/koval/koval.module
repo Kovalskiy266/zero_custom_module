@@ -1,24 +1,22 @@
 <?php
-use Drupal\Component\Utility\Html;
+
 /**
- * Implements hook_theme().
+ * @file
+ * Realization hook_theme()
  */
 
 /**
  * Register template files.
  */
-function koval_theme($existing, $type, $theme, $path) : array
-{
+function koval_theme($existing, $type, $theme, $path):array {
   return [
     'koval-page' => [
       'variables' => [
         'text' => NULL,
         'form' => NULL,
         'cats' => NULL,
+        'header_table' => NULL,
       ],
-      ],
+    ],
   ];
 };
-
-
-

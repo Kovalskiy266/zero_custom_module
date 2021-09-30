@@ -1,5 +1,7 @@
 <?php
+
 namespace Drupal\koval\Form;
+
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
@@ -8,31 +10,26 @@ use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Ajax\CssCommand;
 use Drupal\file\Entity\File;
 use Drupal\Core\Ajax\RedirectCommand;
-use Drupal\Core\Ajax\InsertCommand;
 
 /**
  * Form for submitting cats.
  */
-class FormCats extends FormBase
-{
+class FormCats extends FormBase {
+
   /**
    * {@inheritDoc}
    */
-
-  public function getFormId(): string
-  {
+  public function getFormId(): string {
     return 'koval_formCats';
   }
 
   /**
    * {@inheritDoc}
    */
-
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $form['name'] = [
       '#type' => 'textfield',
-      '#title' => $this->t("Your cat's name: "),
+      '#title' => $this->t("Your cat's name:"),
       '#placeholder' => $this->t("Enter the cat's name"),
       '#attributes' => [
         'title' => $this->t("Minimum length of the name is 2 characters, and the maximum is 32"),
@@ -56,7 +53,7 @@ class FormCats extends FormBase
           'type' => 'none',
         ],
       ],
-      '#suffix' => '<div class="email-validation-message"></div>'
+      '#suffix' => '<div class="email-validation-message"></div>',
     ];
 
     $form['cat_image'] = [
@@ -70,7 +67,6 @@ class FormCats extends FormBase
         'file_validate_size' => [2097152],
       ],
     ];
-
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -92,21 +88,16 @@ class FormCats extends FormBase
     return $form;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {}
 
   /**
    * {@inheritDoc}
    */
-
-  public function validateForm(array &$form, FormStateInterface $form_state)
-  {}
-
-  /**
-   * {@inheritDoc}
-   */
-
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
-    \Drupal::messenger()->addStatus(t('Succes'));
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    \Drupal::messenger()->addStatus($this->t('Succes'));
     $cat_image = $form_state->getValue('cat_image');
     $file = File::load($cat_image[0]);
     $file->setPermanent();
@@ -114,21 +105,19 @@ class FormCats extends FormBase
     \Drupal::database()
       ->insert('koval')
       ->fields([
-      'cat_name' => $form_state->getValue('name'),
-      'email' => $form_state->getValue('email'),
-      'date_created' => time(),
-      'cat_image' => $form_state->getValue(['cat_image'])[0],
+        'cat_name' => $form_state->getValue('name'),
+        'email' => $form_state->getValue('email'),
+        'date_created' => time(),
+        'cat_image' => $form_state->getValue(['cat_image'])[0],
       ])
       ->execute();
   }
 
-
   /**
    * Ajax submitting.
    */
-
   public function setMessage(array &$form, FormStateInterface $form_state): object {
-    $name_pattern ='/[aA-zZ]/';
+    $name_pattern = '/[aA-zZ]/';
     $response = new AjaxResponse();
     $cat_name = $form_state->getValue('name');
     if (mb_strlen($cat_name) < 2) {
@@ -138,14 +127,16 @@ class FormCats extends FormBase
           '<div class="cat-message invalid-name-message">' . $this->t('Less than 2 characters in the name')
         )
       );
-    } elseif (mb_strlen($cat_name) > 32) {
+    }
+    elseif (mb_strlen($cat_name) > 32) {
       $response->addCommand(
         new HtmlCommand(
           '#result_message',
           '<div class="cat-message invalid-name-message">' . $this->t('More than 32 characters in the name!')
         )
       );
-    } elseif (!preg_match($name_pattern, $cat_name)) {
+    }
+    elseif (!preg_match($name_pattern, $cat_name)) {
       $response->addCommand(
         new HtmlCommand(
           '#result_message',
@@ -161,25 +152,25 @@ class FormCats extends FormBase
         )
       );
     }
-    elseif (!($form_state->getValue('cat_image'))){
-    $response->addCommand(
-      new HtmlCommand(
-        '#result_message',
-        '<div class="cat-message invalid-email-message">' . $this->t('The picture is not loaded!')
-      )
-    );
+    elseif (!($form_state->getValue('cat_image'))) {
+      $response->addCommand(
+        new HtmlCommand(
+          '#result_message',
+          '<div class="cat-message invalid-email-message">' . $this->t('The picture is not loaded!')
+        )
+      );
     }
-     else {
-       $response->addCommand(
-         new HtmlCommand(
-           '#result_message',
-           '<div class="cat-message send-message">' .
-           $this->t('Thanks! Your cat by name @result has been sent',
-             ['@result' => ($form_state->getValue('name'))])
+    else {
+      $response->addCommand(
+        new HtmlCommand(
+          '#result_message',
+          '<div class="cat-message send-message">' .
+          $this->t('Thanks! Your cat by name @result has been sent',
+            ['@result' => ($form_state->getValue('name'))])
          )
        );
-       $response->addCommand(new RedirectCommand('\koval\cats'));
-     }
+      $response->addCommand(new RedirectCommand('\koval\cats'));
+    }
     \Drupal::messenger()->deleteAll();
     $response->addCommand(new InvokeCommand('.custom-class', 'val', ['']));
 
@@ -189,7 +180,6 @@ class FormCats extends FormBase
   /**
    * Ajax validate Email.
    */
-
   public function validateEmail(array &$form, FormStateInterface $form_state) {
     $ajax_response = new AjaxResponse();
     $email = $form_state->getValue('email');
@@ -203,12 +193,15 @@ class FormCats extends FormBase
         );
         $ajax_response->addCommand(
           new CssCommand(
-            '.form-email', ['box-shadow' => '2px -2px 59px -9px rgba(217, 26, 8, 0.2) inset',
-                                  'border-color' => 'red'],
+            '.form-email', [
+              'box-shadow' => '2px -2px 59px -9px rgba(217, 26, 8, 0.2) inset',
+              'border-color' => 'red',
+            ],
           )
         );
         break;
-      } else {
+      }
+      else {
         $ajax_response->addCommand(
           new HtmlCommand(
             '.email-validation-message',
@@ -217,12 +210,15 @@ class FormCats extends FormBase
         );
         $ajax_response->addCommand(
           new CssCommand(
-            '.form-email', ['box-shadow' => 'none',
-                          'border-color' => '#006400',]
+            '.form-email', [
+              'box-shadow' => 'none',
+              'border-color' => '#006400',
+            ]
           )
         );
       }
     }
     return $ajax_response;
   }
+
 }
