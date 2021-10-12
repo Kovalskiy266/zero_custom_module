@@ -70,9 +70,9 @@ class EditCatsForm extends FormCats
       ],
     )
     ->execute();
-//    if ($cat_image != $this->cat->cat_image) {
-//      File::load($this->cat->cat_image)->delete();
-//    }
+    if ($cat_image != $this->cat->cat_image) {
+      File::load($this->cat->cat_image)->delete();
+    }
 }
 
 
