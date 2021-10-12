@@ -1,7 +1,16 @@
 koval.cats:
-  path:  '/koval/cats'
+  path: '/koval/cats'
   defaults:
     _controller: '\Drupal\koval\Controller\CatsController::build'
     _title: 'Cats'
   requirements:
     _permission: 'access content'
+
+koval.delete_form:
+  path: '/koval/cats/{id}/delete'
+  defaults:
+    _form: '\Drupal\koval\Form\DeleteCatsForm'
+    _title: 'Delete a Cats Form'
+  requirements:
+    _permission: 'administer site configuration'
+

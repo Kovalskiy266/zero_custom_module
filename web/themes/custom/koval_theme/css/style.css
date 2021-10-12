@@ -166,6 +166,10 @@ form {
   overflow-y: hidden;
 }
 
+.cats-table-wrapper a {
+  color: #FF8C00;
+  text-decoration: none;
+}
 .cats-table-wrapper h1 {
   color: #FF6347;
   margin-top: 100px;
@@ -199,15 +203,29 @@ form {
   z-index: 25;
   text-align: center;
 }
-.cats-table-wrapper .cats-fields-container {
+.cats-table-wrapper .button-container {
+  width: 100%;
+  display: flex;
+}
+.cats-table-wrapper .button-container div {
+  width: 50%;
+  padding: 20px;
+  margin-top: -20px;
+  border: 2px solid #FF6347;
+  box-shadow: 1px 1px 38px 4px rgba(255, 99, 71, 0.2);
+  font-size: 24px;
+  color: #FF8C00;
+  font-weight: 800;
+}
+.cats-table-wrapper .cats-fields-container .fields {
   display: flex;
   width: 100%;
 }
-.cats-table-wrapper .cats-fields-container img {
+.cats-table-wrapper .cats-fields-container .fields img {
   width: 100%;
   height: 225px;
 }
-.cats-table-wrapper .cats-fields-container .cats-window {
+.cats-table-wrapper .cats-fields-container .fields .cats-window {
   width: 30%;
   height: 40%;
   margin: auto;
@@ -220,7 +238,7 @@ form {
   text-align: center;
   overflow-y: hidden;
 }
-.cats-table-wrapper .cats-fields-container div {
+.cats-table-wrapper .cats-fields-container .fields div {
   width: 25%;
   margin: 20px 0;
   display: flex;
@@ -245,6 +263,45 @@ form {
   font-size: 24px;
   font-weight: 800;
   box-shadow: 1px 1px 38px 4px rgba(255, 99, 71, 0.2);
+}
+
+.ui-dialog {
+  width: 500px;
+}
+.ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-content, .ui-dialog .ui-dialog-buttonpane {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: 800;
+  float: none;
+}
+.ui-dialog .ui-dialog-titlebar .ui-dialog-buttonset, .ui-dialog .ui-dialog-content .ui-dialog-buttonset, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: none;
+}
+
+.my-modal-edit {
+  max-width: 800px;
+  width: 100% !important;
+  padding: 30px;
+  text-align: center;
+}
+.my-modal-edit .ui-dialog-titlebar {
+  background-color: white;
+}
+.my-modal-edit form {
+  text-align: center;
+  overflow-x: hidden;
+}
+.my-modal-edit form label {
+  margin: 20px 0;
+}
+.my-modal-edit form div {
+  margin: 20px auto;
+}
+.my-modal-edit input {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 header {

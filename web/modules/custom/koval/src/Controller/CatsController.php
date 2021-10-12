@@ -5,6 +5,7 @@ namespace Drupal\koval\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\file\Entity\File;
 
+
 /**
  * Returns responses for koval routes.
  */
@@ -25,30 +26,38 @@ class CatsController extends ControllerBase {
     ];
   }
 
+
   /**
    * Create database table for cats.
    */
   public function catsTable():array {
     $database = \Drupal::database();
     $query = $database->select("koval", 'kov');
-    $query->fields('kov', ['cat_name', 'email', 'cat_image', 'date_created']);
+    $query->fields('kov', ['id', 'cat_name', 'email', 'cat_image', 'date_created']);
     $result = $query->execute()->fetchAll();
     $rows = [];
     foreach ($result as $value) {
-      $value->cat_image = [
-        '#theme' => 'image_style',
-        '#style_name' => 'medium',
-        '#uri' => File::load($value->cat_image)->getFileUri(),
-        '#attributes' => [
-          'class' => 'cat-image',
-          'alt' => 'cat',
-        ],
-      ];
+        echo $value->cat_image;
+        echo File::load($value->cat_image)->getFileUri('');
+        $value->cat_image = [
+          '#theme' => 'image_style',
+          '#style_name' => 'medium',
+          '#uri' => File::load($value->cat_image)->getFileUri(),
+          '#attributes' => [
+            'class' => 'cat-image',
+            'alt' => 'cat',
+          ],
+        ];
+
+//        echo File::load($value->cat_image)->getFileUri();
       $rows[] = [
         'cat_name' => $value->cat_name,
         'email' => $value->email,
         'cat_image' => ['data' => $value->cat_image],
         'date_created' => date('Y-m-d', $value->date_created),
+        'id' => $value->id,
+        'edit' => 'Edit',
+        'delete' => 'Delete',
       ];
       krsort($rows);
     }

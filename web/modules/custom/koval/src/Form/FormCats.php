@@ -152,11 +152,11 @@ class FormCats extends FormBase {
         )
       );
     }
-    elseif (!($form_state->getValue('cat_image'))) {
+    elseif ($form_state->hasAnyErrors()){
       $response->addCommand(
         new HtmlCommand(
           '#result_message',
-          '<div class="cat-message invalid-email-message">' . $this->t('The picture is not loaded!')
+          '<div class="cat-message invalid-email-message">' . $this->t('Error filling out the form, check that all fields are filled!')
         )
       );
     }

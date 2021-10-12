@@ -35,6 +35,7 @@ function koval_schema() {
       'cat_image' => [
         'description' => 'Image of cat',
         'type' => 'int',
+//        'unsigned' => TRUE,
         'length' => 30,
         'not null' => FALSE,
       ],

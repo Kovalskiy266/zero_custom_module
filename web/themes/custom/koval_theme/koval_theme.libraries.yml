@@ -5,8 +5,11 @@ global:
       css/style.css: {}
   js:
     js/script.js: {}
+    js/modal.js: {}
   dependencies:
     - core/drupal
     - core/jquery
     - core/jquery.once
+    - core/ajax
+    - core/drupal.ajax
 
