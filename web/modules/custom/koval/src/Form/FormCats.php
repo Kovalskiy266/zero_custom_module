@@ -31,6 +31,7 @@ class FormCats extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t("Your cat's name:"),
       '#placeholder' => $this->t("Enter the cat's name"),
+      "#required" => TRUE,
       '#attributes' => [
         'title' => $this->t("Minimum length of the name is 2 characters, and the maximum is 32"),
         'class' => ['custom-class'],
@@ -91,7 +92,15 @@ class FormCats extends FormBase {
   /**
    * {@inheritDoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {}
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $cat_name = $form_state->getValue('name');
+    if (!preg_match('/^[-_aA-zZ]{2,30}@([a-z]{2,10})\.[a-z]{2,10}$/', $form_state->getValue('email'))) {
+      $form_state->setErrorByName('email', $this->t('Email is incorrect!'));
+    }
+    if (!preg_match('/^[aA-zZ]{2,32}$/', $cat_name)) {
+      $form_state->setErrorByName('name', $this->t("The cat's name must contain between 2 and 32 Latin characters"));
+    }
+  }
 
   /**
    * {@inheritDoc}
@@ -117,30 +126,13 @@ class FormCats extends FormBase {
    * Ajax submitting.
    */
   public function setMessage(array &$form, FormStateInterface $form_state): object {
-    $name_pattern = '/[aA-zZ]/';
     $response = new AjaxResponse();
     $cat_name = $form_state->getValue('name');
-    if (mb_strlen($cat_name) < 2) {
+    if (!preg_match('/^[aA-zZ]{2,32}$/', $cat_name)) {
       $response->addCommand(
         new HtmlCommand(
           '#result_message',
-          '<div class="cat-message invalid-name-message">' . $this->t('Less than 2 characters in the name')
-        )
-      );
-    }
-    elseif (mb_strlen($cat_name) > 32) {
-      $response->addCommand(
-        new HtmlCommand(
-          '#result_message',
-          '<div class="cat-message invalid-name-message">' . $this->t('More than 32 characters in the name!')
-        )
-      );
-    }
-    elseif (!preg_match($name_pattern, $cat_name)) {
-      $response->addCommand(
-        new HtmlCommand(
-          '#result_message',
-          '<div class="cat-message invalid-name-message">' . $this->t("There are forbidden characters in the cat's name")
+          '<div class="invalid-name-message">' . $this->t("The cat's name must contain between 2 and 32 Latin characters")
         )
       );
     }
@@ -152,7 +144,7 @@ class FormCats extends FormBase {
         )
       );
     }
-    elseif ($form_state->hasAnyErrors()){
+    elseif ($form_state->hasAnyErrors()) {
       $response->addCommand(
         new HtmlCommand(
           '#result_message',

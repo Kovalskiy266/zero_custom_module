@@ -5,7 +5,6 @@ namespace Drupal\koval\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\file\Entity\File;
 
-
 /**
  * Returns responses for koval routes.
  */
@@ -26,7 +25,6 @@ class CatsController extends ControllerBase {
     ];
   }
 
-
   /**
    * Create database table for cats.
    */
@@ -34,22 +32,20 @@ class CatsController extends ControllerBase {
     $database = \Drupal::database();
     $query = $database->select("koval", 'kov');
     $query->fields('kov', ['id', 'cat_name', 'email', 'cat_image', 'date_created']);
-    $result = $query->execute()->fetchAll();
+    $result = $query->execute()
+      ->fetchAll();
     $rows = [];
     foreach ($result as $value) {
-        echo $value->cat_image;
-        echo File::load($value->cat_image)->getFileUri('');
-        $value->cat_image = [
-          '#theme' => 'image_style',
-          '#style_name' => 'medium',
-          '#uri' => File::load($value->cat_image)->getFileUri(),
-          '#attributes' => [
-            'class' => 'cat-image',
-            'alt' => 'cat',
-          ],
-        ];
+      $value->cat_image = [
+        '#theme' => 'image_style',
+        '#style_name' => 'medium',
+        '#uri' => File::load($value->cat_image)->getFileUri(),
+        '#attributes' => [
+          'class' => 'cat-image',
+          'alt' => 'cat',
+        ],
+      ];
 
-//        echo File::load($value->cat_image)->getFileUri();
       $rows[] = [
         'cat_name' => $value->cat_name,
         'email' => $value->email,

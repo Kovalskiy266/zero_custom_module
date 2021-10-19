@@ -21,3 +21,27 @@ koval.edit_form:
     _title: 'Edit a Cats form'
   requirements:
     _permission: 'administer site configuration'
+
+koval.admin_structure_form:
+  path: '/admin/structure/cats'
+  defaults:
+    _title: 'Admin Cats'
+    _controller: '\Drupal\koval\Controller\AdminController::build'
+  requirements:
+    _permission: 'administer site configuration'
+
+koval.admin_structure_delete_form:
+  path: '/admin/structure/cats/{id}/delete'
+  defaults:
+    _form: '\Drupal\koval\Form\AdminStructureDeleteForm'
+    _title: 'Admin delete a Cats Form'
+  requirements:
+    _permission: 'administer site configuration'
+
+koval.admin_structure_edit_form:
+  path: '/admin/structure/cats/{id}/edit'
+  defaults:
+    _form: '\Drupal\koval\Form\AdminStructureEditForm'
+    _title: 'Admin edit a Cats Form'
+  requirements:
+    _permission: 'administer site configuration'

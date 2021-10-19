@@ -16,6 +16,12 @@ function koval_theme($existing, $type, $theme, $path):array {
         'form' => NULL,
         'cats' => NULL,
         'header_table' => NULL,
+        'admin_form' => NULL,
+      ],
+    ],
+    'admin-structure-form' => [
+      'variables' => [
+        'admin_form' => NULL,
       ],
     ],
   ];

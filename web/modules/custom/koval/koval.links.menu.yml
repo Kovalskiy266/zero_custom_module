@@ -1,0 +1,6 @@
+koval.cats:
+  title: 'Koval'
+  parent: system.admin_structure
+  description: 'Manage records.'
+  route_name: koval.admin_structure_form
+  weight: 100

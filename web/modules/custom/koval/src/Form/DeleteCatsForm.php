@@ -7,19 +7,16 @@ use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Url;
 
 /**
- * Class DeleteCatsForm.
+ * Class DeleteCatsForm for delete cats.
  *
  * @package Drupal\koval\Form
  */
-class DeleteCatsForm extends ConfirmFormBase
-{
+class DeleteCatsForm extends ConfirmFormBase {
 
   /**
    * {@inheritdoc}
    */
-
-  public function getFormId()
-  {
+  public function getFormId() {
     return $this->t('delete_form_cat');
   }
 
@@ -31,48 +28,42 @@ class DeleteCatsForm extends ConfirmFormBase
   /**
    * {@inheritdoc}
    */
-  public function getQuestion()
-  {
-    return t('Delete cats');
+  public function getQuestion() {
+    return $this->t('Delete cats');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getCancelUrl()
-  {
+  public function getCancelUrl() {
     return new Url('koval.cats');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getDescription()
-  {
+  public function getDescription() {
     return $this->t('Do this if you are sure you want it!');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getConfirmText()
-  {
+  public function getConfirmText() {
     return $this->t('Delete it!');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getCancelText()
-  {
+  public function getCancelText() {
     return $this->t('Cancel');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $id = NULL)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state, $id = NULL) {
     $this->id = $id;
     return parent::buildForm($form, $form_state);
   }
@@ -80,25 +71,13 @@ class DeleteCatsForm extends ConfirmFormBase
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state)
-  {
-    parent::validateForm($form, $form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $query = \Drupal::database();
     $query->delete('koval')
       ->condition('id', $this->id)
       ->execute();
-    $this->messenger()->addStatus($this->t(("The cat was deleted")));
+    $this->messenger()->addStatus(("The cat was deleted"));
     $form_state->setRedirect('koval.cats');
   }
 
 }
-
-
-

@@ -17,12 +17,14 @@
           <div class="date_created">{{ cat['date_created'] }}</div>
         </div>
         <div class="button-container">
-          <div class="cat-actions">
-            <a href="/koval/cats/{{cat['id']}}/delete"  class="use-ajax"  data-dialog-options="{&quot;classes&quot;:{&quot;ui-dialog&quot;: &quot;ui-corner-all  my-modal-delete&quot;}}" data-dialog-type="modal"> {{ cat['delete'] }}</a>
-          </div>
-          <div class = "cat-actions-edit">
-            <a href="/koval/cats/{{ cat['id'] }}/edit" class="use-ajax" data-dialog-options="{&quot;classes&quot;:{&quot;ui-dialog&quot;: &quot;ui-corner-all  my-modal-edit&quot;}}" data-dialog-type="modal">{{ cat['edit'] }}</a>
-          </div>
+          {% if 'administrator' in user.getroles %}
+            <div class="cat-actions">
+              <a href="/koval/cats/{{cat['id']}}/delete"  class="use-ajax"  data-dialog-options="{&quot;classes&quot;:{&quot;ui-dialog&quot;: &quot;ui-corner-all  my-modal-delete&quot;}}" data-dialog-type="modal"> {{ cat['delete'] }}</a>
+            </div>
+            <div class = "cat-actions-edit">
+              <a href="/koval/cats/{{ cat['id'] }}/edit" class="use-ajax" data-dialog-options="{&quot;classes&quot;:{&quot;ui-dialog&quot;: &quot;ui-corner-all  my-modal-edit&quot;}}" data-dialog-type="modal">{{ cat['edit'] }}</a>
+            </div>
+          {% endif %}
         </div>
       </div>
 {% endfor %}
